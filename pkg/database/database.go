@@ -7,7 +7,7 @@ import (
 )
 
 func New(db *sql.DB) Operator {
-	return &databaseOperatorImpl{db: db}
+	return &operatorImpl{db: db}
 }
 
 type Operator interface {
