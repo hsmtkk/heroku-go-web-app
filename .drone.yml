@@ -37,3 +37,21 @@ steps:
       - cd cmd/helloworld
       - ./helloworld &
       - curl -v http://127.0.0.1:8080
+
+  - name: dockerlint
+    depends_on:
+      - yamllint
+    image: hadolint/hadolint:v1.17.6
+    commands:
+      - hadolint build/helloworld/Dockerfile
+
+  - name: dockerhub
+    depends_on:
+      - dockerlint
+    image: plugins/docker
+    settings:
+      username: hsmtkk
+      password:
+        from_secret: docker_hub_token
+      repo: hsmtkk/heroku-go-web-app
+      auto_tag: true
