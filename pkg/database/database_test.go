@@ -27,11 +27,11 @@ func TestDatabase(t *testing.T) {
 	assert.Equal(t, "alpha", p.Content, "should be equal")
 	assert.Equal(t, "bravo", p.Author, "should be equal")
 
-	err = ope.Update(post.Post{ID: 0, Content: "charlie", Auhtor: "delta"})
+	err = ope.Update(post.Post{ID: 0, Content: "charlie", Author: "delta"})
 	assert.Nil(t, err, "should be nil")
 	assert.Equal(t, "charlie", p.Content, "should be equal")
 	assert.Equal(t, "delta", p.Author, "should be equal")
 
-	err = ope.Delete(post)
+	err = ope.Delete(p)
 	assert.Nil(t, err, "should be nil")
 }
