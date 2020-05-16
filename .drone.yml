@@ -1,0 +1,18 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: yamllint
+    image: sdesbure/yamllint
+    commands:
+      - yamllint -d relaxed .drone.yml
+
+  - name: gotest
+    depends_on:
+      - yamllint
+    image: golang:1.14
+    commands:
+      - cd pkg/database
+      - go test
