@@ -54,3 +54,4 @@ steps:
       password:
         from_secret: docker_hub_token
       repo: hsmtkk/heroku-go-web-app
+      dockerfile: build/helloworld/Dockerfile
