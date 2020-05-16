@@ -14,5 +14,26 @@ steps:
       - yamllint
     image: golang:1.14
     commands:
-      - cd pkg/database
+      - cd pkg/helloworld
       - go test
+
+  - name: build
+    depends_on:
+      - gotest
+    image: golang:1.14
+    environment:
+      CGO_ENABLED: "0"
+    commands:
+      - cd cmd/helloworld
+      - go build -o helloworld
+
+  - name: run
+    depends_on:
+      - build
+    image: curlimages/curl:7.70.0
+    environment:
+      PORT: "8080"
+    commands:
+      - cd cmd/helloworld
+      - ./helloworld &
+      - curl -v http://127.0.0.1:8080
