@@ -11,6 +11,8 @@ COPY ./cmd/helloworld ./cmd/helloworld
 
 WORKDIR /go/src/github.com/hsmtkk/heroku-go-web-app/cmd/helloworld
 
+ENV CGO_ENABLED=0
+
 RUN go build -o /helloworld
 
 FROM alpine:3.11.6
