@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	for _, pair := os.Environ() {
+	for _, pair := range os.Environ() {
 		fmt.Println(pair)
 	}
 
@@ -20,7 +20,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	http.HandleFunc("/", helloworld.Handler)
 	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil); err != nil {
 		log.Fatal(err)
