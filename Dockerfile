@@ -18,5 +18,7 @@ RUN go build -o /helloworld
 FROM alpine:3.11.6
 
 COPY --from=builder /helloworld /helloworld
+COPY ./revision /revision
 
 ENTRYPOINT ["/helloworld"]
+
